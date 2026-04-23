@@ -3,148 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>DevOps Pipeline Demo</title>
     <style>
-        * {
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1f4037, #99f2c8);
+            text-align: center;
+            color: #fff;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
-        body {
-            background: #f5f7fa;
-            color: #333;
+        .container {
+            margin-top: 100px;
         }
 
-        header {
-            background: #1e293b;
-            color: white;
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        h1 {
+            font-size: 3em;
         }
 
-        header h1 {
-            font-size: 24px;
-        }
-
-        nav a {
-            color: white;
-            margin-left: 20px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #38bdf8;
-        }
-
-        .hero {
-            height: 90vh;
-            background: linear-gradient(to right, #0f172a, #334155);
-            color: white;
+        .pipeline {
             display: flex;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            flex-direction: column;
+            margin-top: 40px;
+        }
+
+        .stage {
+            background: rgba(255, 255, 255, 0.2);
             padding: 20px;
-        }
-
-        .hero h2 {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            margin-bottom: 25px;
-        }
-
-        .hero button {
-            padding: 12px 25px;
-            border: none;
-            background: #38bdf8;
-            color: white;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .hero button:hover {
-            background: #0284c7;
-        }
-
-        .features {
-            padding: 60px 50px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
+            margin: 10px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 120px;
             transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
+        .stage:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
 
-        .card h3 {
-            margin-bottom: 10px;
+        .success {
+            border: 2px solid #00ff00;
         }
 
         footer {
-            background: #1e293b;
-            color: white;
-            text-align: center;
-            padding: 15px;
+            margin-top: 50px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>MySite</h1>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Features</a>
-        <a href="#">Contact</a>
-    </nav>
-</header>
+<div class="container">
+    <h1>🚀 DevOps CI/CD Pipeline</h1>
+    <p>Automated Build | Test | Deploy</p>
 
-<section class="hero">
-    <h2>Build Something Amazing</h2>
-    <p>Simple, clean and modern website template for your project.</p>
-    <button>Get Started</button>
-</section>
+    <div class="pipeline">
+        <div class="stage success">Code</div>
+        <div class="stage success">Build</div>
+        <div class="stage success">Test</div>
+        <div class="stage success">Deploy</div>
+    </div>
 
-<section class="features">
-    <div class="card">
-        <h3>Fast</h3>
-        <p>Optimized for speed and performance.</p>
-    </div>
-    <div class="card">
-        <h3>Responsive</h3>
-        <p>Works perfectly on mobile, tablet, and desktop.</p>
-    </div>
-    <div class="card">
-        <h3>Modern</h3>
-        <p>Clean UI with smooth interactions.</p>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 MySite. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>Deployed using CI/CD Pipeline</p>
+    </footer>
+</div>
 
 </body>
 </html>
