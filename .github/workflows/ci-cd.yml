@@ -100,7 +100,7 @@ jobs:
             rm -rf demo-app
 
             echo "Cloning repo..."
-            git clone https://github.com/rajatdevops1/demo-app.git
+            git clone https://github.com/siddarthakaleru-p99/demo-app.git
 
             cd demo-app
 
