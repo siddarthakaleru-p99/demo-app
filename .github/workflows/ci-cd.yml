@@ -35,29 +35,24 @@ jobs:
     needs: build
 
     steps:
-      - name: ⬇️ Download Artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-
-      - name: 📦 Load Docker Image
-        run: docker load -i devops-demo.tar
-
       - name: 🧪 Test Container
         run: |
           echo "Testing container..."
-
+      
           docker run -d -p 8080:80 --name test-container devops-demo
-
+      
           echo "Waiting for container to start..."
           sleep 10
-
-          echo "Checking response..."
-          curl -v http://localhost:8080
-
+      
+          echo "Checking HTTP status..."
+          curl -f http://localhost:8080
+      
           echo "Validating content..."
-          curl http://localhost:8080 | grep "Hello"
-
+          response=$(curl -s http://localhost:8080)
+          echo "$response"
+      
+          echo "$response" | grep "DevOps CI/CD Pipeline"
+      
           docker rm -f test-container
 
 
