@@ -17,10 +17,10 @@ jobs:
       - name: 🔨 Build Docker Image
         run: |
           echo "Building Docker image..."
-          docker build -t devops-demo .
+          docker build -t devops-demo:latest .
 
       - name: 📦 Save Docker Image
-        run: docker save devops-demo -o devops-demo.tar
+        run: docker save devops-demo:latest -o devops-demo.tar
 
       - name: ⬆️ Upload Artifact
         uses: actions/upload-artifact@v4
@@ -35,24 +35,38 @@ jobs:
     needs: build
 
     steps:
+      - name: ⬇️ Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: docker-image
+
+      - name: 📂 Verify File
+        run: ls -l
+
+      - name: 📦 Load Docker Image
+        run: docker load -i devops-demo.tar
+
+      - name: 🔍 Check Docker Images
+        run: docker images
+
       - name: 🧪 Test Container
         run: |
           echo "Testing container..."
-      
-          docker run -d -p 8080:80 --name test-container devops-demo
-      
+
+          docker run -d -p 8080:80 --name test-container devops-demo:latest
+
           echo "Waiting for container to start..."
           sleep 10
-      
+
           echo "Checking HTTP status..."
           curl -f http://localhost:8080
-      
+
           echo "Validating content..."
           response=$(curl -s http://localhost:8080)
           echo "$response"
-      
+
           echo "$response" | grep "DevOps CI/CD Pipeline"
-      
+
           docker rm -f test-container
 
 
@@ -73,18 +87,20 @@ jobs:
             set -x
 
             echo "Connected to EC2"
-            
+
+            # Install Docker if not installed
             sudo yum update -y
             sudo yum install -y docker git
             sudo systemctl start docker
             sudo systemctl enable docker
-            
+
             cd /home/ec2-user
 
+            # Remove old repo
             rm -rf demo-app
 
             echo "Cloning repo..."
-            GIT_ASKPASS=true git clone https://github.com/rajatdevops1/demo-app.git
+            git clone https://github.com/rajatdevops1/demo-app.git
 
             cd demo-app
 
@@ -97,4 +113,5 @@ jobs:
             echo "Starting new container..."
             sudo docker run -d -p 80:80 --name nginx-container nginx-devops-demo
 
+            echo "Deployment successful!"
             sudo docker ps -a
